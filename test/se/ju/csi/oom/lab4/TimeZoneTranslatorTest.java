@@ -24,16 +24,16 @@ public class TimeZoneTranslatorTest {
 		TimeZoneTranslator timezoneTranslator = new TimeZoneTranslator();
 		DateTime startdate = new DateTime(2018, 8, 27, 10, 0, 0);
 		DateTime endDate = new DateTime(2018, 8, 27, 11, 45, 0);
-		Person björn = new Person("björn borg");
+		Person bjorn = new Person("bjorn borg");
 		Person nalle = new Person("nalle phu");
 		Place HC218 = new Place("Hc218",57.7785672,14.1614833,20.0);
 		
-		Event event1 = new Event("University standup",startdate,endDate,new HashSet<>(Arrays.asList(björn, nalle)),HC218);
-		Event response = timezoneTranslator.shiftEventTimeZone(event1, TimeZone.CENTRAL_EUROPEAN_TIME, TimeZone.ALASKA);
+		Event event1 = new Event("University standup",startdate,endDate,new HashSet<>(Arrays.asList(bjorn, nalle)),HC218);
+		Event response = TimeZoneTranslator.shiftEventTimeZone(event1, TimeZone.CENTRAL_EUROPEAN_TIME, TimeZone.ALASKA);
 		
 		DateTime exStartdate = new DateTime(2018, 8, 27, 0, 0, 0);
 		DateTime exEndDate = new DateTime(2018, 8, 27, 1, 45, 0);
-		Event event2 = new Event("University standup",exStartdate,exEndDate,new HashSet<>(Arrays.asList(björn, nalle)),HC218);
+		Event event2 = new Event("University standup",exStartdate,exEndDate,new HashSet<>(Arrays.asList(bjorn, nalle)),HC218);
 		
 		assertEquals(response.getStartDate().toString(), event2.getStartDate().toString());
 		assertEquals(response.getEndDate().toString(), event2.getEndDate().toString());
